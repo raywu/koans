@@ -2,9 +2,29 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 # Implement a DiceSet Class here:
 #
-# class DiceSet
-#   code ...
-# end
+class DiceSet
+  attr_reader :values, :roll
+  
+  # This passes rolling_the_dice_returns_a_set_of_integers_bewteen_1_and_6 but the array are all same number
+  #
+  # def values
+  #     @die = (1..6).to_a.shuffle.first
+
+  #   ([] << @die)*5
+  # end
+  
+
+  # This structure below is taken from javierjulio. Should remember to use instance variable and not always a method re: values
+  #
+  def roll(x) # This is obvious from dice.roll(5) on line 34
+    
+    @values = []
+
+    x.downto(1).each do |x| # downto is a method on Integer, taken from javierjulio
+      @values << (1..6).to_a.shuffle.first
+    end
+  end
+end
 
 class AboutDiceProject < EdgeCase::Koan
   def test_can_create_a_dice_set
